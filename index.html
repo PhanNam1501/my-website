@@ -27,8 +27,19 @@
         </ul>
       </nav>
 
+      <section class="search-bar" aria-label="Search posts">
+        <label for="post-search" class="search-label">Search</label>
+        <input
+          type="search"
+          id="post-search"
+          name="post-search"
+          placeholder="Search posts..."
+          autocomplete="off"
+        />
+      </section>
+
       <section class="post-list" aria-label="Post list">
-        <article class="post" data-category="blockchain">
+        <article class="post" data-category="blockchain" data-title="ethereum protocol research">
           <div class="post-meta">
             <time datetime="2025-11-06">Nov 06, 2025</time>
             <span class="post-category">Blockchain</span>
@@ -40,7 +51,7 @@
           </h2>
         </article>
 
-        <article class="post" data-category="evm">
+        <article class="post" data-category="evm" data-title="understanding eip-2930 access lists">
           <div class="post-meta">
             <time datetime="2025-11-06">Nov 06, 2025</time>
             <span class="post-category">EVM</span>

@@ -3,7 +3,9 @@ const body = document.body;
 const THEME_KEY = "vb-demo-theme";
 const categoryLinks = document.querySelectorAll(".category-nav a[data-filter]");
 const postItems = document.querySelectorAll(".post-list .post");
+const searchInput = document.getElementById("post-search");
 let activeFilter = "all";
+let searchTerm = "";
 
 function getPreferredTheme() {
   const stored = localStorage.getItem(THEME_KEY);
@@ -21,10 +23,13 @@ function setTheme(theme) {
   localStorage.setItem(THEME_KEY, theme);
 }
 
-function applyFilter(filter) {
+function applyFilters() {
   postItems.forEach((post) => {
     const category = (post.dataset.category || "").toLowerCase();
-    const shouldShow = filter === "all" || category === filter;
+    const title = (post.dataset.title || post.textContent || "").toLowerCase();
+    const matchesCategory = activeFilter === "all" || category === activeFilter;
+    const matchesSearch = !searchTerm || title.includes(searchTerm);
+    const shouldShow = matchesCategory && matchesSearch;
     post.classList.toggle("is-hidden", !shouldShow);
   });
 }
@@ -43,7 +48,7 @@ toggleButton.addEventListener("click", () => {
 
 window.addEventListener("DOMContentLoaded", () => {
   setTheme(getPreferredTheme());
-  applyFilter(activeFilter);
+  applyFilters();
 
   categoryLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
@@ -52,9 +57,16 @@ window.addEventListener("DOMContentLoaded", () => {
       const nextFilter = activeFilter === filter ? "all" : filter;
       activeFilter = nextFilter;
 
-      applyFilter(activeFilter);
       setActiveLink(activeFilter === "all" ? null : link);
+      applyFilters();
     });
   });
+
+  if (searchInput) {
+    searchInput.addEventListener("input", (event) => {
+      searchTerm = event.target.value.trim().toLowerCase();
+      applyFilters();
+    });
+  }
 });
 
