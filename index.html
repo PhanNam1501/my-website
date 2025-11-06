@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phan Nam's Website - Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="theme-light">
+    <header class="site-header">
+      <div class="container">
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle light or dark mode">
+          <span class="icon">🌙</span>
+          <span class="label">Dark Mode</span>
+        </button>
+        <h1 class="site-title">Phan Nam's website</h1>
+      </div>
+    </header>
+
+    <main class="container">
+      <nav class="category-nav" aria-label="Post categories">
+        <ul>
+          <li><a href="#">Blockchain</a></li>
+          <li><a href="#">EVM</a></li>
+          <li><a href="#">DeFi</a></li>
+          <li><a href="#">Math</a></li>
+        </ul>
+      </nav>
+
+      <section class="post-list" aria-label="Post list">
+        <p class="empty-state">No posts yet. Check back soon!</p>
+      </section>
+
+      <section id="post-viewer" class="post-viewer" aria-live="polite" hidden>
+        <button id="close-post" class="close-post" aria-label="Close post">×</button>
+        <article id="post-content" class="post-content"></article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2025 Phan Nam (unofficial demo)</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
