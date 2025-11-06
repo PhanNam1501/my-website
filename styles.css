@@ -197,17 +197,6 @@ body {
   border-color: var(--accent);
 }
 
-.empty-state {
-  margin: 0;
-  padding: 2.5rem;
-  border: 1px dashed var(--border-color);
-  border-radius: 18px;
-  background: color-mix(in srgb, var(--card-background) 92%, transparent);
-  text-align: center;
-  color: var(--muted-text);
-  font-size: 1.05rem;
-}
-
 .site-footer {
   padding: 2rem 0;
   border-top: 1px solid var(--border-color);
@@ -238,9 +227,5 @@ body {
     border-radius: 12px;
   }
 
-  .empty-state {
-    padding: 2rem;
-    border-radius: 12px;
-  }
 }
 
