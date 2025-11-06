@@ -97,6 +97,12 @@ body {
   color: var(--accent);
 }
 
+.category-nav a.is-active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 0.2rem;
+}
+
 .post-list {
   display: grid;
   gap: 1.75rem;
@@ -120,68 +126,7 @@ body {
   border-bottom: none;
 }
 
-.post-viewer {
-  position: relative;
-  margin-bottom: 4rem;
-  background: var(--card-background);
-  border: 1px solid var(--border-color);
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.18);
-  padding: clamp(1.25rem, 2vw + 1rem, 2.5rem);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.post-viewer[hidden] {
-  display: none;
-}
-
-.post-content h2 {
-  margin-top: 0;
-  font-size: clamp(1.5rem, 1vw + 1.5rem, 2.25rem);
-}
-
-.post-detail-date {
-  display: inline-block;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--muted-text);
-  margin-bottom: 0.5rem;
-}
-
-.post-content p {
-  color: var(--muted-text);
-  margin-bottom: 1rem;
-}
-
-.post-content p:last-child {
-  margin-bottom: 0;
-}
-
-.close-post {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
-  border: 1px solid var(--border-color);
-  background: transparent;
-  color: inherit;
-  font-size: 1.25rem;
-  cursor: pointer;
-  display: grid;
-  place-items: center;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-
-.close-post:hover,
-.close-post:focus {
-  background: color-mix(in srgb, var(--accent) 12%, transparent);
-  transform: rotate(90deg);
-}
-
 .post time {
-  display: block;
   font-size: 0.95rem;
   font-weight: 600;
   color: var(--muted-text);
@@ -216,6 +161,10 @@ body {
 .post a:hover,
 .post a:focus {
   border-color: var(--accent);
+}
+
+.post.is-hidden {
+  display: none;
 }
 
 .site-footer {

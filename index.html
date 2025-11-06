@@ -20,15 +20,15 @@
     <main class="container">
       <nav class="category-nav" aria-label="Post categories">
         <ul>
-          <li><a href="#">Blockchain</a></li>
-          <li><a href="#">EVM</a></li>
-          <li><a href="#">DeFi</a></li>
-          <li><a href="#">Math</a></li>
+          <li><a href="#" data-filter="blockchain">Blockchain</a></li>
+          <li><a href="#" data-filter="evm">EVM</a></li>
+          <li><a href="#" data-filter="defi">DeFi</a></li>
+          <li><a href="#" data-filter="math">Math</a></li>
         </ul>
       </nav>
 
       <section class="post-list" aria-label="Post list">
-        <article class="post" data-category="Blockchain">
+        <article class="post" data-category="blockchain">
           <div class="post-meta">
             <time datetime="2025-11-06">Nov 06, 2025</time>
             <span class="post-category">Blockchain</span>
@@ -40,7 +40,7 @@
           </h2>
         </article>
 
-        <article class="post" data-category="EVM">
+        <article class="post" data-category="evm">
           <div class="post-meta">
             <time datetime="2025-11-06">Nov 06, 2025</time>
             <span class="post-category">EVM</span>
@@ -51,11 +51,6 @@
             </a>
           </h2>
         </article>
-      </section>
-
-      <section id="post-viewer" class="post-viewer" aria-live="polite" hidden>
-        <button id="close-post" class="close-post" aria-label="Close post">×</button>
-        <article id="post-content" class="post-content"></article>
       </section>
     </main>
 

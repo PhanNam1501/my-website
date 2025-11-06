@@ -1,12 +1,9 @@
 const toggleButton = document.getElementById("theme-toggle");
 const body = document.body;
-const postViewer = document.getElementById("post-viewer");
-const postContent = document.getElementById("post-content");
-const closePost = document.getElementById("close-post");
-
 const THEME_KEY = "vb-demo-theme";
-
-const posts = {};
+const categoryLinks = document.querySelectorAll(".category-nav a[data-filter]");
+const postItems = document.querySelectorAll(".post-list .post");
+let activeFilter = "all";
 
 function getPreferredTheme() {
   const stored = localStorage.getItem(THEME_KEY);
@@ -24,30 +21,19 @@ function setTheme(theme) {
   localStorage.setItem(THEME_KEY, theme);
 }
 
-function renderPost(postId) {
-  const post = posts[postId];
-  if (!post || !postContent || !postViewer) return;
-
-  const paragraphs = post.body
-    .map((paragraph) => `<p>${paragraph}</p>`)
-    .join("");
-
-  postContent.innerHTML = `
-    <time datetime="${post.datetime}" class="post-detail-date">${post.date}</time>
-    <h2>${post.title}</h2>
-    <p>${post.summary}</p>
-    ${paragraphs}
-  `;
-
-  postViewer.hidden = false;
-  postViewer.scrollIntoView({ behavior: "smooth", block: "start" });
+function applyFilter(filter) {
+  postItems.forEach((post) => {
+    const category = (post.dataset.category || "").toLowerCase();
+    const shouldShow = filter === "all" || category === filter;
+    post.classList.toggle("is-hidden", !shouldShow);
+  });
 }
 
-function hidePost() {
-  if (postViewer) {
-    postViewer.hidden = true;
-    postContent.innerHTML = "";
-  }
+function setActiveLink(link) {
+  categoryLinks.forEach((navLink) => {
+    const isActive = link && navLink === link;
+    navLink.classList.toggle("is-active", isActive);
+  });
 }
 
 toggleButton.addEventListener("click", () => {
@@ -57,17 +43,18 @@ toggleButton.addEventListener("click", () => {
 
 window.addEventListener("DOMContentLoaded", () => {
   setTheme(getPreferredTheme());
+  applyFilter(activeFilter);
 
-  document.querySelectorAll(".post a[data-post-id]").forEach((link) => {
+  categoryLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
-      const { postId } = event.currentTarget.dataset;
-      renderPost(postId);
+      const filter = (link.dataset.filter || "").toLowerCase();
+      const nextFilter = activeFilter === filter ? "all" : filter;
+      activeFilter = nextFilter;
+
+      applyFilter(activeFilter);
+      setActiveLink(activeFilter === "all" ? null : link);
     });
   });
-
-  if (closePost) {
-    closePost.addEventListener("click", hidePost);
-  }
 });
 
